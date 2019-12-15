@@ -1,6 +1,6 @@
-# Install Zsh autosuggestions
 mkdir ~/.zsh
 
+# Install Zsh autosuggestions
 echo "Installing Zsh Autosuggestions"
 bash ./zsh_configs/install_autosuggestions.sh
 echo "Done"
