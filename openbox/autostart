@@ -1,0 +1,11 @@
+sleep 1
+compton -b
+sleep 1
+feh --bg-scale ~/Pictures/void.png
+sleep 1
+tint2
+autorandr --change
+sleep 1
+nm-applet
+volumeicon
+
