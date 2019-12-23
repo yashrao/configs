@@ -8,10 +8,14 @@ bash install_zsh_everything.sh
 echo "Installing Vim items"
 bash install_vim_everything.sh
 
-echo "Copying Emacs Config"
+#echo "Copying Emacs Config"
 # Emacs config
-cp ./emacs/emacs ~/.emacs
+#cp ./emacs/emacs ~/.emacs
 
-echo "Copying Emacs Addons"
+#echo "Copying Emacs Addons"
 # Emacs Plugins
-cp -r ./emacs/emacs.d/ ~/.emacs.d
+#cp -r ./emacs/emacs.d/ ~/.emacs.d
+
+echo "Installing Doom Emacs"
+git clone https://github.com/hlissner/doom-emacs ~/.emacs.d
+~/.emacs.d/bin/doom install
