@@ -17,5 +17,4 @@ bash install_vim_everything.sh
 #cp -r ./emacs/emacs.d/ ~/.emacs.d
 
 echo "Installing Doom Emacs"
-git clone https://github.com/hlissner/doom-emacs ~/.emacs.d
-~/.emacs.d/bin/doom install
+bash install_doom_emacs.sh
