@@ -18,3 +18,6 @@ bash install_vim_everything.sh
 
 echo "Installing Doom Emacs"
 bash install_doom_emacs.sh
+
+echo "Copying Kitty Config"
+bash install_kitty_config.sh
