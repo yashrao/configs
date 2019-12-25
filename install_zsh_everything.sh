@@ -12,6 +12,6 @@ echo "Done"
 
 # Install Zsh highlighting
 echo "Installing Powerlevel10k"
-bash ./zsh_configs/install_highlighting.sh
+bash ./zsh_configs/install_powerlevel10k.sh
 echo "Done"
 
