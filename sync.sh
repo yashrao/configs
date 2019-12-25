@@ -1,27 +1,36 @@
 #!/opt/local/bin/bash
-#echo "Copying Files... (Zsh, Emacs, Vim)"
-#echo "cp ~/.zshrc ./zsh_configs/zsh"
-#cp ~/.zshrc ./zsh_configs/zsh
-#echo "cp ~/.emacs ./emacs/emacs"
-#cp ~/.emacs ./emacs/emacs
-#echo "cp ~/.emacs.d ./emacs/emacs.d"
-#cp ~/.emacs.d ./emacs/emacs.d
-#echo "cp ~/.vimrc ./vim/vimrc"
-#cp ~/.vimrc ./vim/vimrc
-#echo "Done"
 
 # Do not include the url folder from emacs.d!
 REPO_FOLDER="./sync_delete"
-all_files="$(find .)"
+#all_files="$(find .)"
+all_files="$(find . -type f -follow -print)"
 hashed_files_current=""
 SEP="\n"
 
 declare -A files
 
+function check_file_dir {
+    res="?"
+    if [ ! -d "$1" ]; then
+	res="dir"
+    elif [ ! -f "$1" ]; then
+	res="file"
+    fi
+    echo $res
+}
+
+echo "Copying current config files"
+check_file ~/.zshrc
+cp ~/.zshrc ./zsh_configs/zshrc
+cp ~/.emacs ./emacs/emacs
+cp -r ~/.emacs.d/* ./emacs/emacs.d
+cp ~/.vimrc ./vim/vimrc
+echo "Done"
+
 for line in $all_files
 do
     # Skipping version control, dirs and backups  
-    if [[ $line == *".git"* || -d $line || $line == *"~" ]]; then
+    if [[ $line == *".git"* || -d $line || $line == *"~" || $line == *".swp" ]]; then
 	continue
     fi
     #hashed_files_current="${hashed_files_current} \n ${current_hash}"
@@ -39,17 +48,23 @@ do
     done
 done
 #echo -e $hashed_files_current # DEBUG
-
+echo "Grabbing updated configs"
 git clone https://github.com/yashrao/configs.git $REPO_FOLDER
+echo "Done"
 #cd $REPO_FOLDER
-$all_files="$(find ${REPO_FOLDER})"
+#$all_files="$(find ${REPO_FOLDER})"
+#all_files_clone="$(find ${REPO_FOLDER})"
+cd ${REPO_FOLDER}
+all_files_clone="$(find . -type f -follow -print)"
+#cd .. 
+#echo $all_files
 hashed_files_clone=""
-declare -A files_hashed
+declare -A files_git
 
-for line in $all_files
+for line in $all_files_clone
 do
     # Skipping version control, dirs and backups  
-    if [[ $line == *".git"* || -d $line || $line == *"~" ]]; then
+    if [[ $line == *".git"* || -d $line || $line == *"~" || $line == *".swp" ]]; then
 	continue
     fi
     #hashed_files_clone="${hashed_files_clone} \n ${current_hash}"
@@ -62,17 +77,30 @@ do
 	    val="${false}"
 	    continue
 	fi
-	files_hashed[$line]=$i
+	#echo $i $line
+	files_git[$line]=$i
 	#echo ${files[$line]}
     done
 done
 
+#check all the existing files for changes
+for key in ${!files[@]}; do
+    if [ "${files_git[${key}]}" != "${files[${key}]}" ]; then
+	echo ${key} has changed "(${files_git[${key}]} ${files[${key}]})"
+    fi
+done
+
+for key in ${!files_git[@]}; do
+    if [ "${files_git[${key}]}" != "${files[${key}]}" ]; then
+	echo ${key} has changed "(${files_git[${key}]} ${files[${key}]})"
+    fi
+done
+
 #for line in ${files[@]}
-
-echo `$(${files[@]} ${files_hashed[@]} | tr ' ' '\n' | sort | uniq -u)`
-
 
 # # Finish
 echo "Cleaning up"
-#rm -rf ./sync_delete
+cd ..
+rm -rf ./sync_delete
 echo "Sync Complete"
+
