@@ -10,8 +10,11 @@ echo "Installing Zsh Highlighting"
 bash ./zsh_configs/install_highlighting.sh
 echo "Done"
 
-# Install Zsh highlighting
-echo "Installing Powerlevel10k"
-bash ./zsh_configs/install_powerlevel10k.sh
+# Install Liquid Prompt
+echo "Installing Liquidprompt"
+bash ./zsh_configs/install_liquidprompt.sh
 echo "Done"
 
+echo "Copying zshrc"
+cp zshrc ~/.zshrc
+echo "Done"
