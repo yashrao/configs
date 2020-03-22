@@ -16,5 +16,5 @@ bash ./zsh_configs/install_liquidprompt.sh
 echo "Done"
 
 echo "Copying zshrc"
-cp zshrc ~/.zshrc
+cp zsh_configs/zshrc ~/.zshrc
 echo "Done"
