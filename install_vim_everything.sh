@@ -21,8 +21,11 @@ else
   echo "source ~/.vimrc" >> ~/.config/nvim/init.vim
 fi
 
-echo "Getting vim theme"
+echo "Getting vim themes"
+echo "Iceberg"
 wget https://raw.githubusercontent.com/cocopon/iceberg.vim/master/colors/iceberg.vim -P ~/.vim/colors
+echo "Done"
+wget https://raw.githubusercontent.com/challenger-deep-theme/vim/master/colors/challenger_deep.vim -P ~/.vim/colors
 echo "Done"
 
 echo "Copying vimrc"
