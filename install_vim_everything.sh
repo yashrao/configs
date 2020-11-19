@@ -5,10 +5,9 @@ if ! [ -x "$(command -v nvim)" ]; then # Checking if neovim is installed
   if [[ $input == "Y" || $input == "y" ]]; then
     echo "Creating Neovim Config"
     mkdir ~/.config/nvim
-    echo "set runtimepath^=~/.vim runtimepath+=~/.vim/after" >> ~/.config/nvim/init.vim
-    echo "let &packpath=&runtimepath" >> ~/.config/nvim/init.vim
-    echo "source ~/.vimrc" >> ~/.config/nvim/init.vim
+    cp nvim/init.vim ~/.config/nvim/init.vim
     echo "Please install Neovim after the script is finished!"
+    echo "Don't forget to run PlugInstall in neovim"
   else
     echo "Creating Neovim Config... Skipping!"
   fi
@@ -16,9 +15,8 @@ else
   # If neovim is installed then just make the init.vim file no questions
   echo "Creating Neovim Config"
   mkdir ~/.config/nvim
-  echo "set runtimepath^=~/.vim runtimepath+=~/.vim/after" >> ~/.config/nvim/init.vim
-  echo "let &packpath=&runtimepath" >> ~/.config/nvim/init.vim
-  echo "source ~/.vimrc" >> ~/.config/nvim/init.vim
+  cp nvim/init.vim ~/.config/nvim/init.vim
+  echo "Don't forget to run PlugInstall in neovim"
 fi
 
 echo "Getting vim themes"
