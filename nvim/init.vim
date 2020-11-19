@@ -23,6 +23,12 @@ Plug 'raimondi/delimitmate'
 Plug 'ajh17/spacegray.vim'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'farmergreg/vim-lastplace'
+Plug 'junegunn/goyo.vim'
+Plug 'rhysd/vim-color-spring-night'
+Plug 'haishanh/night-owl.vim'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'morhetz/gruvbox'
+Plug 'arcticicestudio/nord-vim'
 call plug#end()
 
 "============== GENERAL =================
@@ -64,11 +70,30 @@ filetype plugin indent on
 let g:jedi#completions_enabled = 0 " Want to use deoplete-jedi for completions
 let g:deoplete#enable_at_startup = 1
 let g:SuperTabDefaultCompletionType = "<c-n>"
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'ra' " For Ctrl-P
+set wildignore+=*/venv/*
 
 "============= COLOR SCHEME =============
 set termguicolors
 " Set color here
 " colorscheme srcery
-" colorscheme forest-night
+" colorscheme night-owl 
+" colorscheme spacegray
+" colorscheme gruvbox 
+" colorscheme nord 
 colorscheme spacegray
-let g:airline_theme='zenburn'
+
+set background=dark
+"let g:gruvbox_contrast_light = 'soft'
+let g:airline_theme='night_owl'
+
+"============== Python venv ==============
+" Figure out the system Python for Neovim.
+" (For bedrock linux)
+if exists("$VIRTUAL_ENV")
+    let g:python3_host_prog=substitute(system("which -a python3 | head -n2 | tail -n1"), "\n", '', 'g')
+else
+    let g:python3_host_prog=substitute(system("which python3"), "\n", '', 'g')
+endif
