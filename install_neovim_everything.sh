@@ -12,3 +12,5 @@ echo "Installing Python dependencies"
 pip3 install --user jedi pynvim
 echo "Done"
 
+nvim +PlugInstall +qall
+nvim +UpdateRemotePlugins +qall
