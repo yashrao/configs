@@ -6,6 +6,7 @@ echo "Done"
 echo "Copying neo-vim config"
 mkdir ~/.config/nvim
 cp ./nvim/init.vim ~/.config/nvim/init.vim
+cp ./nvim/coc-settings.json ~/.config/nvim/coc-settings.json
 echo "Done"
 
 echo "Installing Python dependencies"
