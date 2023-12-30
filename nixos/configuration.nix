@@ -106,6 +106,17 @@
       neofetch
       htop
       telegram-desktop
+      tradingview
+      godot_4
+      python311Packages.pip
+      python311Packages.pyls-flake8
+      python311Packages.python-lsp-ruff
+      obsidian
+    ];
+
+    # for obsidian
+    nixpkgs.config.permittedInsecurePackages = [
+      "electron-25.9.0"
     ];
 
     programs.emacs = {

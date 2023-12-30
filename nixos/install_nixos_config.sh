@@ -16,6 +16,7 @@ cp emacs.d/emacs.d/init.el $HOME/.emacs.d/
 sh install_kitty_config.sh
 sh install_vim_everything.sh
 cp tmux.conf $HOME/.tmux.conf
+dconf write /org/gnome/desktop/peripherals/touchpad/natural-scroll false # for gnome
 
 echo "Manual Steps:"
 echo "\t1) Firefox/Brave Browser Extensions"
