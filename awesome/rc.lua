@@ -14,6 +14,9 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
+
+-- https://github.com/deficient/battery-widget
+local battery_widget = require("battery-widget")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
@@ -63,17 +66,17 @@ modkey = "Mod4"
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
     awful.layout.suit.tile,
-    awful.layout.suit.tile.left,
+    -- awful.layout.suit.tile.left,
     -- awful.layout.suit.tile.bottom,
-    awful.layout.suit.tile.top,
-    awful.layout.suit.floating,
+    -- awful.layout.suit.tile.top,
+    -- awful.layout.suit.floating,
     -- awful.layout.suit.fair,
     -- awful.layout.suit.fair.horizontal,
     -- awful.layout.suit.spiral,
     -- awful.layout.suit.spiral.dwindle,
     awful.layout.suit.max,
-    awful.layout.suit.max.fullscreen,
-    awful.layout.suit.magnifier,
+    -- awful.layout.suit.max.fullscreen,
+    -- awful.layout.suit.magnifier,
     -- awful.layout.suit.corner.nw,
     -- awful.layout.suit.corner.ne,
     -- awful.layout.suit.corner.sw,
@@ -199,6 +202,9 @@ awful.screen.connect_for_each_screen(function(s)
     -- Create the wibox
     s.mywibox = awful.wibar({ position = "top", screen = s })
 
+    local systray = wibox.widget.systray()
+    systray:set_base_size(25)
+
     -- Add widgets to the wibox
     s.mywibox:setup {
         layout = wibox.layout.align.horizontal,
@@ -212,9 +218,33 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             mykeyboardlayout,
-            wibox.widget.systray(),
+            -- wibox.widget.systray(),
+            systray,
+	    battery_widget {
+               ac = "AC",
+               adapter = "BAT0",
+               ac_prefix = "AC: ",
+               battery_prefix = "Bat:",
+               percent_colors = {
+                   { 25, "red"   },
+                   { 50, "orange"},
+                   {999, "green" },
+               },
+               listen = true,
+               timeout = 10,
+               widget_text = "${AC_BAT}${color_on}${percent}%${color_off}",
+               -- widget_font = "Deja Vu Sans Mono 16",
+               tooltip_text = "Battery ${state}${time_est}\nCapacity: ${capacity_percent}%",
+               alert_threshold = 5,
+               alert_timeout = 0,
+               alert_title = "Low battery !",
+               alert_text = "${AC_BAT}${time_est}",
+               -- alert_icon = "~/Downloads/low_battery_icon.png",
+               warn_full_battery = true,
+               -- full_battery_icon = "~/Downloads/full_battery_icon.png",
+	    },
             mytextclock,
-            s.mylayoutbox,
+            -- s.mylayoutbox,
         },
     }
 end)
@@ -326,7 +356,9 @@ globalkeys = gears.table.join(
               end,
               {description = "lua execute prompt", group = "awesome"}),
     -- Menubar
-    awful.key({ modkey }, "p", function() menubar.show() end,
+    -- awful.key({ modkey }, "p", function() menubar.show() end,
+    --          {description = "show the menubar", group = "launcher"})
+    awful.key({ modkey }, "p", function() awful.spawn.with_shell("rofi -show-icons -show drun &>> /tmp/rofi.log") end,
               {description = "show the menubar", group = "launcher"})
 )
 
@@ -568,7 +600,9 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 beautiful.useless_gap = 5
 
 -- Autostart
-awful.spawn("autorandr --change")
+-- awful.spawn("autorandr --change")
 awful.spawn("picom -b")
-awful.spawn("feh --bg-center /home/yash/Pictures/bedrock6.png /home/yash/Pictures/bedrock6.png")
+-- awful.spawn("feh --bg-center /home/yash/Pictures/bedrock6.png /home/yash/Pictures/bedrock6.png")
 awful.spawn("nitrogen --restore")
+awful.spawn("nm-applet")
+awful.spawn("pasystray")
