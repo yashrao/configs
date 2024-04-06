@@ -34,6 +34,8 @@
   (package-install 'go-mode))
 (unless (package-installed-p 'hl-todo)
   (package-install 'hl-todo))
+(unless (package-installed-p 'modus-themes)
+  (package-install 'modus-themes))
 
 ;; Setup packages
 ;; Evil - the only way to do things
@@ -94,7 +96,7 @@
 (global-hl-line-mode t)
 (set-face-attribute 'default nil :font "Liberation Mono-12")
 (set-frame-font "Liberation Mono-12" nil t)
-(load-theme 'doom-lantern t)
+(load-theme 'modus-vivendi-tinted t)
 ;; Spaces > tabs
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
