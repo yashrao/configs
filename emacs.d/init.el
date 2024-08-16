@@ -137,10 +137,10 @@
    ("pyls.plugins.pyls_black.enabled" t t)
    ("pyls.plugins.pyls_isort.enabled" t t)))
 :hook
-((python-mode . lsp)
- ;;(solidity-mode . lsp)
- (tsx-ts-mode . lsp))
- (rust-mode . lsp))
+  ((python-mode . lsp)
+   ;;(solidity-mode . lsp)
+   (tsx-ts-mode . lsp)
+   (rust-mode . lsp))
 )
 
 ;; (use-package lsp-mode
