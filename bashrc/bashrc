@@ -1,37 +1,16 @@
-# .bashrc
+#
+# ~/.bashrc
+#
 
-# Source global definitions
-#if [ -f /etc/bashrc ]; then
-#	. /etc/bashrc
-#fi
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
 
-# User specific environment
-if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
-then
-    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
-fi
-export PATH
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
 
-# Uncomment the following line if you don't like systemctl's auto-paging feature:
-# export SYSTEMD_PAGER=
-
-# User specific aliases and functions
-if [ -d ~/.bashrc.d ]; then
-	for rc in ~/.bashrc.d/*; do
-		if [ -f "$rc" ]; then
-			. "$rc"
-		fi
-	done
-fi
-
-unset rc
+export ODIN_ROOT="/opt/Odin"
+export PATH="$PATH:/opt/bin"
 . "$HOME/.cargo/env"
+. "$HOME/.deno/env"
 
-alias vim='emacs -nw'
-alias ls='ls --color'
-alias l='ls -la --color'
-
-PS1='\[\e[0;1;38;5;154m\]\u\[\e[0m\]@\[\e[0m\]\H \[\e[0;1m\]\w \[\e[0m\][\[\e[0;38;5;87m\]$?\[\e[0m\]] \[\e[0m\]$(git branch 2>/dev/null | grep '"'"'^*'"'"' | colrm 1 2)\n\[\e[0;1;38;5;154m\]> \[\e[0m\]'
-
-PROMPT_COMMAND="export PROMPT_COMMAND=echo"
-alias clear="unset PROMPT_COMMAND; clear; PROMPT_COMMAND='export PROMPT_COMMAND=echo'"
+PROMPT_COMMAND='PS1_CMD1=$(git branch --show-current 2>/dev/null)'; PS1='-\[\e[1m\]${PS1_CMD1}\[\e[0m\]- \[\e[96;3m\]\h\[\e[0m\] \[\e[92m\]\w\[\e[91;1;3m\]λ\[\e[0m\] '

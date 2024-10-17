@@ -2,6 +2,30 @@
 -- found (e.g. lgi). If LuaRocks is not installed, do nothing.
 pcall(require, "luarocks.loader")
 
+-- Requirements:
+-- autorandr
+-- picom
+-- nm-applet
+-- blueman-applet
+-- pasystray
+-- rofi
+
+-- this part requires the existence of hostnamectl
+function getOS()
+   local cmd = "hostnamectl chassis"
+   local handle = io.popen(cmd)
+   local result = handle:read("*a")
+   result = result:gsub("%s+", "")
+   handle:close()
+end
+
+local os_type = getOS()
+local home_dir = os.getenv("HOME")
+
+-- Variables to configure
+local wallpaper_name = home_dir .. "/Pictures/wallpaper.png"
+local gap_size = 0
+
 -- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
@@ -15,8 +39,6 @@ local naughty = require("naughty")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
 
--- https://github.com/deficient/battery-widget
-local battery_widget = require("battery-widget")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
@@ -50,6 +72,7 @@ end
 -- Themes define colours, icons, font and wallpapers.
 -- beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 beautiful.init(gears.filesystem.get_configuration_dir() .. "theme.lua")
+awesome.set_preferred_icon_size(32)
 
 -- This is used later as the default terminal and editor to run.
 terminal = "kitty"
@@ -168,6 +191,8 @@ end
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
 
+beautiful.wallpaper = wallpaper_name
+
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
     set_wallpaper(s)
@@ -220,29 +245,6 @@ awful.screen.connect_for_each_screen(function(s)
             mykeyboardlayout,
             -- wibox.widget.systray(),
             systray,
-	    battery_widget {
-               ac = "AC",
-               adapter = "BAT0",
-               ac_prefix = "AC: ",
-               battery_prefix = "Bat:",
-               percent_colors = {
-                   { 25, "red"   },
-                   { 50, "orange"},
-                   {999, "green" },
-               },
-               listen = true,
-               timeout = 10,
-               widget_text = "${AC_BAT}${color_on}${percent}%${color_off}",
-               -- widget_font = "Deja Vu Sans Mono 16",
-               tooltip_text = "Battery ${state}${time_est}\nCapacity: ${capacity_percent}%",
-               alert_threshold = 5,
-               alert_timeout = 0,
-               alert_title = "Low battery !",
-               alert_text = "${AC_BAT}${time_est}",
-               -- alert_icon = "~/Downloads/low_battery_icon.png",
-               warn_full_battery = true,
-               -- full_battery_icon = "~/Downloads/full_battery_icon.png",
-	    },
             mytextclock,
             -- s.mylayoutbox,
         },
@@ -597,12 +599,15 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- }}}
 
 -- gaps
-beautiful.useless_gap = 5
+beautiful.useless_gap = gap_size
 
 -- Autostart
--- awful.spawn("autorandr --change")
+awful.spawn("autorandr -c")
+if os_type == 'desktop' then
+    -- command generated with xlayoutdisplay to set the refresh rate for my displayport mon to 165
+   awful.spawn("xrandr --dpi 96 --output DisplayPort-0 --off --output DisplayPort-1 --mode 1920x1080 --rate 165 --primary --output DisplayPort-2 --off --output HDMI-A-0 --mode 1920x1080 --rate 60")
+end
 awful.spawn("picom -b")
--- awful.spawn("feh --bg-center /home/yash/Pictures/bedrock6.png /home/yash/Pictures/bedrock6.png")
-awful.spawn("nitrogen --restore")
 awful.spawn("nm-applet")
+awful.spawn("blueman-applet")
 awful.spawn("pasystray")
