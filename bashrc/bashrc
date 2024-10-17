@@ -14,3 +14,5 @@ export PATH="$PATH:/opt/bin"
 . "$HOME/.deno/env"
 
 PROMPT_COMMAND='PS1_CMD1=$(git branch --show-current 2>/dev/null)'; PS1='-\[\e[1m\]${PS1_CMD1}\[\e[0m\]- \[\e[96;3m\]\h\[\e[0m\] \[\e[92m\]\w\[\e[91;1;3m\]λ\[\e[0m\] '
+
+alias ip="ip -c=always"
