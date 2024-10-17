@@ -30,8 +30,6 @@
   (package-install 'ccls))
 (unless (package-installed-p 'company)
   (package-install 'company))
-(unless (package-installed-p 'mini-modeline)
-  (package-install 'mini-modeline))
 (unless (package-installed-p 'rust-mode)
   (package-install 'rust-mode))
 (unless (package-installed-p 'solidity-mode)
