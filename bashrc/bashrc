@@ -13,6 +13,15 @@ export PATH="$PATH:/opt/bin"
 . "$HOME/.cargo/env"
 . "$HOME/.deno/env"
 
-PROMPT_COMMAND='PS1_CMD1=$(git branch --show-current 2>/dev/null)'; PS1='-\[\e[1m\]${PS1_CMD1}\[\e[0m\]- \[\e[96;3m\]\h\[\e[0m\] \[\e[92m\]\w\[\e[91;1;3m\]λ\[\e[0m\] '
+PROMPT_COMMAND='PS1_CMD1=$(git branch --show-current 2>/dev/null)'; PS1='-\[\e[1m\]${PS1_CMD1}\[\e[0m\]- \[\e[96m\]\h\[\e[0m\] \[\e[92m\]\w\[\e[91m\]::\[\e[93m\]λ\[\e[0m\] '
 
 alias ip="ip -c=always"
+
+
+# using ripgrep combined with preview
+# find-in-file - usage: fif <searchTerm>
+fif() {
+  if [ ! "$#" -gt 0 ]; then echo "Need a string to search for!"; return 1; fi
+  rg --files-with-matches --no-messages "$1" | fzf --preview "highlight -O ansi -l {} 2> /dev/null | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' || rg --ignore-case --pretty --context 10 '$1' {}"
+}
+
