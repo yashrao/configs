@@ -272,7 +272,7 @@
 ;;(tab-bar-mode)
 
 ;; Setting gc threshold for hopefully increased performance
-(setq gc-cons-threshold 500000000)
+(setq gc-cons-threshold 100000000)
 
 (ido-mode 1)
 (ido-everywhere 1)
@@ -299,7 +299,8 @@
 (set-frame-font "JetBrainsMono Nerd Font-10.5" nil t)
 ;;(load-theme 'naysayer t)
 ;;(load-theme 'overcast t)
-(load-theme 'ef-melissa-dark t)
+;;(load-theme 'ef-melissa-dark t)
+(load-theme 'modus-vivendi t)
 ;; Spaces > tabs
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
