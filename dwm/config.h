@@ -60,7 +60,7 @@ static const Layout layouts[] = {
 
 static const char *const autostart[] = {
     "autorandr", "--change", NULL,
-    "flameshot" NULL,
+    "flameshot", NULL,
     "dwmstatus", NULL,
     "pasystray", NULL,
     "nm-applet", NULL,
