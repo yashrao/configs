@@ -10,7 +10,6 @@
 ;; Custom modes in ~/.emacs.d/lisp/
 (require 'odin-mode)
 
-
 ;;--------------USE-PACKAGE SETUP---------------------
 ;; Download use-package
 (unless (package-installed-p 'use-package)
@@ -77,8 +76,8 @@
   (package-install 'tree-sitter-langs))
 (unless (package-installed-p 'fzf)
   (package-install 'fzf))
-(unless (package-installed-p 'centaur-tabs)
-  (package-install 'centaur-tabs))
+;; (unless (package-installed-p 'centaur-tabs)
+;;   (package-install 'centaur-tabs))
 ;; Run all-the-icons-install-fonts in emacs for this to work for this to work
 (unless (package-installed-p 'all-the-icons)
   (package-install 'all-the-icons))
@@ -185,27 +184,27 @@
   )
 
 ;; sexy tabs
-(use-package centaur-tabs
-  :demand
-  :config
-  (centaur-tabs-mode t)
-  :bind
-  (("C-<tab>" . centaur-tabs-forward)
-   ("C-<iso-lefttab>" . centaur-tabs-backward)
-   :map evil-normal-state-map
-   ("g t" . centaur-tabs-forward)
-   ("g T" . centaur-tabs-backward)))
+;; (use-package centaur-tabs
+;;   :demand
+;;   :config
+;;   (centaur-tabs-mode t)
+;;   :bind
+;;   (("C-<tab>" . centaur-tabs-forward)
+;;    ("C-<iso-lefttab>" . centaur-tabs-backward)
+;;    :map evil-normal-state-map
+;;    ("g t" . centaur-tabs-forward)
+;;    ("g T" . centaur-tabs-backward)))
 
-(setq centaur-tabs-style "bar")
-(setq centaur-tabs-set-icons t)
-(setq centaur-tabs-icon-type 'all-the-icons)
-(setq centaur-tabs-gray-out-icons 'buffer)
-;;(setq centaur-tabs-set-bar 'under)
-;;(setq x-underline-at-descent-line t)
-(setq centaur-tabs-close-button "X")
-(setq centaur-tabs-set-modified-marker t)
-(setq centaur-tabs-modified-marker "*")
-(centaur-tabs-change-fonts "JetBrainsMono Nerd Font" 160)
+;; (setq centaur-tabs-style "bar")
+;; (setq centaur-tabs-set-icons t)
+;; (setq centaur-tabs-icon-type 'all-the-icons)
+;; (setq centaur-tabs-gray-out-icons 'buffer)
+;; ;;(setq centaur-tabs-set-bar 'under)
+;; ;;(setq x-underline-at-descent-line t)
+;; (setq centaur-tabs-close-button "X")
+;; (setq centaur-tabs-set-modified-marker t)
+;; (setq centaur-tabs-modified-marker "*")
+;; (centaur-tabs-change-fonts "JetBrainsMono Nerd Font" 160)
 
 ;;(define-key evil-normal-state-map (kbd "g t") 'centaur-tabs-forward)
 ;;(define-key evil-normal-state-map (kbd "g T") 'centaur-tabs-backward)
@@ -295,12 +294,10 @@
 (menu-bar-mode -1)
 (global-display-line-numbers-mode)
 (global-hl-line-mode t)
-(set-face-attribute 'default nil :font "JetBrainsMono Nerd Font-10.5")
-(set-frame-font "JetBrainsMono Nerd Font-10.5" nil t)
-;;(load-theme 'naysayer t)
-;;(load-theme 'overcast t)
-;;(load-theme 'ef-melissa-dark t)
-(load-theme 'modus-vivendi t)
+(set-face-attribute 'default nil :font "JetBrainsMono Nerd Font-11")
+(set-frame-font "JetBrainsMono Nerd Font-11" nil t)
+
+(load-theme 'redsayer t)
 ;; Spaces > tabs
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
@@ -325,7 +322,20 @@
  ;; If there is more than one, they won't work right.
  '(c-basic-offset 4)
  '(custom-safe-themes
-   '("2e7dc2838b7941ab9cabaa3b6793286e5134f583c04bde2fba2f4e20f2617cf7"
+   '("676648cf65a3ca76635beba0e39cc8814a958b3d9ce67b3b1d8200c8d8cb48df"
+     "6da1ba8724efce585e051f1a589d42f1526769e4b72d1808f178dbd0987d4ad1"
+     "ac893acecb0f1cf2b6ccea5c70ea97516c13c2b80c07f3292c21d6eb0cb45239"
+     "541282f66e5cc83918994002667d2268f0a563205117860e71b7cb823c1a11e9"
+     "3d9938bbef24ecee9f2632cb25339bf2312d062b398f0dfb99b918f8f11e11b1"
+     "6af300029805f10970ebec4cea3134f381cd02f04c96acba083c76e2da23f3ec"
+     "aff0396925324838889f011fd3f5a0b91652b88f5fd0611f7b10021cc76f9e09"
+     "fae5872ff90462502b3bedfe689c02d2fa281bc63d33cb007b94a199af6ccf24"
+     "a3a71b922fb6cbf9283884ac8a9109935e04550bcc5d2a05414a58c52a8ffc47"
+     "d6b369a3f09f34cdbaed93eeefcc6a0e05e135d187252e01b0031559b1671e97"
+     "ae20535e46a88faea5d65775ca5510c7385cbf334dfa7dde93c0cd22ed663ba0"
+     "1ad12cda71588cc82e74f1cabeed99705c6a60d23ee1bb355c293ba9c000d4ac"
+     "59c36051a521e3ea68dc530ded1c7be169cd19e8873b7994bfc02a216041bf3b"
+     "2e7dc2838b7941ab9cabaa3b6793286e5134f583c04bde2fba2f4e20f2617cf7"
      "7746e1f01dae4a96c068d3c0c0357fe14ed02385de04227e4af78fb4ad784e58"
      "daf189a2af425e9f376ddb9e99627e9d8f2ebdd5cc795065da81633f88389b4b"
      "39054dbdf1e3f5b36e91db507f86b4c709bc2bc99fbe5e2ffc600891261f50cd"
@@ -392,10 +402,13 @@
      default))
  '(delete-selection-mode nil)
  '(package-selected-packages
-   '(magit nyan-mode overcast-theme naysayer-theme badwolf-theme
-           mini-modeline hc-zenburn-theme lua-mode zenburn-theme
-           color-theme-sanityinc-tomorrow tuareg haskell-mode hl-todo
-           go-mode ccls evil)))
+   '(all-the-icons almost-mono-themes catppuccin-theme ccls centaur-tabs
+                   company-solidity d-mode dired-sidebar doom-themes
+                   ef-themes evil fzf go-mode hc-zenburn-theme hl-todo
+                   jtsx lsp-ui lua-mode magit mini-modeline
+                   modus-themes naysayer-theme nyan-mode org-modern
+                   overcast-theme rust-mode tree-sitter-langs
+                   zenburn-theme zig-mode)))
       
       ;;; backup/autosave - Changing the location of the autosaving
       (defvar backup-dir (expand-file-name "~/.emacs.d/backup/"))
