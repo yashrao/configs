@@ -1,19 +1,29 @@
 
-local lspconfig = require "lspconfig"
+local lspconfig = require("lspconfig")
 
 local servers = { "html", "cssls", "ccls", "gopls", "ts_ls", "ruff" }
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+
+capabilities = vim.tbl_deep_extend('force', capabilities, require('blink.cmp').get_lsp_capabilities({}, false))
+
+capabilities = vim.tbl_deep_extend('force', capabilities, {
+  textDocument = {
+    foldingRange = {
+      dynamicRegistration = false,
+      lineFoldingOnly = true
+    }
+  }
+})
 
 -- Define on_attach for keybindings
-local on_attach = function(client, bufnr)
-  local opts = { buffer = bufnr, noremap = true, silent = true }
-  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)        -- Go to definition
-  vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)              -- Show hover info
-  vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)    -- Rename symbol
-  vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts) -- Code actions
-end
+--local on_attach = function(client, bufnr)
+--  local opts = { buffer = bufnr, noremap = true, silent = true }
+--  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)        -- Go to definition
+--  vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)              -- Show hover info
+--  vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)    -- Rename symbol
+--  vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts) -- Code actions
+--end
 --local servers = {
 --     clangd = {},
 --     gopls = {},
@@ -45,12 +55,18 @@ end
 
 
 -- lsps with default config
+--for _, lsp in ipairs(servers) do
+--  lspconfig[lsp].setup {
+--    on_attach = on_attach,
+--    --on_init = lspconfig.on_init,
+--    capabilities = capabilities,
+--  }
+--end
+
 for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
-    on_attach = on_attach,
-    --on_init = lspconfig.on_init,
-    capabilities = capabilities,
-  }
+    lspconfig[lsp].setup {
+        capabilities = capabilities
+    }
 end
 
 ---- lsps with default config
