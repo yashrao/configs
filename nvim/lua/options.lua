@@ -18,6 +18,6 @@ vim.o.shiftwidth = 4 -- Number of spaces inserted when indenting
 vim.opt.background = "dark"
 vim.opt.termguicolors = true
 
--- vim.cmd("colorscheme base46-chocolate")
-vim.cmd("colorscheme redsayer")
---vim.cmd("colorscheme ef-dark")
+--vim.cmd("colorscheme ef-melissa-dark")
+vim.cmd("colorscheme base46-rosepine")
+-- vim.cmd("colorscheme redsayer")

@@ -1,12 +1,12 @@
 {
-    "layer": "top",
-    "position": "top",
+    "layer": "bottom",
+    "position": "bottom",
     "height": 18,
     "spacing": 5,
 
-    "modules-left": ["hyprland/workspaces", "memory", "temperature"],
+    "modules-left": ["custom/icon", "memory", "temperature"],
     "modules-center": ["clock"],
-    "modules-right": ["wireplumber", "battery", "backlight", "hyprland/language", "network", "bluetooth", "tray"],
+    "modules-right": ["pulseaudio", "network", "bluetooth", "tray"],
 
     "hyprland/workspaces": {
         "format": "<span size='larger'>{icon}</span>",
@@ -30,10 +30,18 @@
         "format": "{:%d.%m.%Y | %H:%M}"
     },
 
-    "wireplumber": {
-        "format": "\udb81\udd7e  {volume}%",
-        "max-volume": 100,
-        "scroll-step": 5
+    "pulseaudio": {
+        "format": "{icon}",
+        "format-alt": "{volume} {icon}",
+        "format-alt-click": "click-right",
+        "format-muted": "",
+        "format-icons": {
+            "phone": [" ", " ", " ", " "],
+            "default": ["", "", "", ""]
+        },
+        "scroll-step": 10,
+        "on-click": "pavucontrol",
+        "tooltip": false
     },
 
     "battery": {
@@ -83,5 +91,9 @@
     "tray": {
         "icon-size": 16,
         "spacing": 16
+    },
+
+    "custom/icon" : {
+        "format": " ",
     }
 }

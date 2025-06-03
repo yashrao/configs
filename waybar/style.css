@@ -3,7 +3,7 @@
 @define-color background #000000;
 
 * {
-    font-family: JetBrainsMono Nerd Font;
+    font-family: "Fira Code";
     font-size: 12px;
     padding: 0;
     margin: 0;
@@ -36,4 +36,12 @@
 #bluetooth,
 #tray {
     padding-right: 1em 
+}
+#custom-icon {
+    background-image: url("/home/yash/.config/waybar/icon.png");
+    background-size: 12px 12px;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding-left: 10px;
+    margin-left: 10px;
 }

@@ -9,6 +9,7 @@ wk.add({
   { "<leader>gd", "<cmd>Telescope lsp_definitions<cr>", desc = "Find definitions", mode = "n" },
   { "<leader>b", "<cmd>Telescope buffers<cr>", desc = "Buffers", mode = "n" },
   { "<leader>fn", "<cmd>tabnew<cr>", desc = "New File" },
+  { "<leader>c", "<cmd>Compile<cr>", desc = "compile-mode" },
   { "<leader>f1", hidden = true }, -- hide this keymap
   { "<leader>w", proxy = "<c-w>", group = "windows" }, -- proxy to window mappings
   --{ "<leader>b", group = "buffers", expand = function()
