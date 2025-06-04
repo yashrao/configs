@@ -1,3 +1,0 @@
-# zstd is a requirement for Zig
->=sys-devel/llvm-16.0.6 zstd abi_x86_32
->=sys-devel/lld-16.0.6 zstd

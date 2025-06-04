@@ -1,0 +1,17 @@
+sys-kernel/installkernel grub dracut
+# required by xfce-base/xfce4-panel-4.20.4::gentoo[dbusmenu]
+# required by xfce-base/thunar-4.20.2::gentoo[trash-panel-plugin]
+# required by xfce-extra/thunar-archive-plugin-0.5.3::gentoo
+# required by thunar-archive-plugin (argument)
+>=dev-libs/libdbusmenu-16.04.0-r2 gtk3
+# required by www-client/firefox-128.9.0::gentoo[system-libvpx]
+# required by firefox (argument)
+>=media-libs/libvpx-1.14.1 postproc
+# required by x11-terms/ghostty-1.1.3::gentoo
+# required by ghostty (argument)
+>=media-libs/freetype-2.13.3 harfbuzz
+# required by media-sound/pulseaudio-daemon-17.0-r1::gentoo[alsa,alsa-plugin]
+# required by media-libs/libpulse-17.0::gentoo
+# required by media-sound/pavucontrol-6.1-r1::gentoo
+# required by pavucontrol (argument)
+>=media-plugins/alsa-plugins-1.2.12 pulseaudio

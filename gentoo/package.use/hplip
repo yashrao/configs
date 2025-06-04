@@ -1,0 +1,4 @@
+net-print/hplip hpcups X libnotify scanner
+# required by net-print/hplip-3.24.4-r1::gentoo[-minimal,snmp]
+# required by net-print/hplip (argument)
+>=net-dns/avahi-0.9_rc2 python

@@ -1,0 +1,2 @@
+app-i18n/fcitx -systemd wayland 
+app-i18n/fcitx-configtool config-qt
