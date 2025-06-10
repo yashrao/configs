@@ -14,17 +14,19 @@ local colors = {
   fg3 = '#949494',
   fg4 = '#868686',
   fg6 = '#c3c3c3',
-  bg1 = '#140000',
+  bg1 = '#000000',
   bg2 = '#271414',
   bg3 = '#3a2929',
   bg4 = '#4c3d3d',
   builtin = '#c97f6f',
-  keyword = '#ffffff',
+  -- keyword = '#ffffff',
+  keyword = '#59c2ff',
   const = '#7ad0c6',
   comment = '#44b340',
   func = '#c1d1e3',
   str = '#2ec09c',
   type = '#8cde94',
+  -- type = '#59c2ff',
   var = '#c1d1e3',
   selection = '#0000ff',
   warning = '#ff0000',
@@ -35,7 +37,8 @@ local colors = {
 vim.api.nvim_set_hl(0, 'Normal', { bg = colors.bg1, fg = colors.fg1 })
 vim.api.nvim_set_hl(0, 'Comment', { fg = colors.comment })
 vim.api.nvim_set_hl(0, 'String', { fg = colors.str })
-vim.api.nvim_set_hl(0, 'Keyword', { fg = colors.keyword, bold = true })
+-- vim.api.nvim_set_hl(0, 'Keyword', { fg = colors.keyword, bold = true })
+vim.api.nvim_set_hl(0, 'Keyword', { fg = colors.keyword, bold = false })
 vim.api.nvim_set_hl(0, 'Function', { fg = colors.func })
 vim.api.nvim_set_hl(0, 'Identifier', { fg = colors.var })
 vim.api.nvim_set_hl(0, 'Type', { fg = colors.type })
