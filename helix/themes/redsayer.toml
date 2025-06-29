@@ -1,0 +1,131 @@
+# Author: Gokul Soumya <gokulps15@gmail.com>
+# Modified to match Neovim theme
+
+# Syntax highlighting
+"tag" = { fg = "pal_keyword" }
+"attribute" = { fg = "pal_type" }
+"comment" = { fg = "pal_comment" }
+"constant" = { fg = "pal_const" }
+"constant.numeric" = { fg = "pal_const" }
+"constant.builtin" = { fg = "pal_const" }
+"constant.character.escape" = { fg = "pal_const" }
+"constructor" = { fg = "pal_func" }
+"function" = { fg = "pal_func" }
+"function.builtin" = { fg = "pal_func" }
+"function.macro" = { fg = "pal_func" }
+"keyword" = { fg = "pal_keyword" }
+"keyword.control" = { fg = "pal_keyword" }
+"keyword.control.import" = { fg = "pal_keyword" }
+"keyword.directive" = { fg = "pal_keyword" }
+"keyword.storage" = { fg = "pal_keyword" }
+"label" = { fg = "pal_keyword" }
+"namespace" = { fg = "pal_type" }
+"operator" = { fg = "pal_keyword" }
+"keyword.operator" = { fg = "pal_keyword" }
+"special" = { fg = "pal_builtin" }
+"string" = { fg = "pal_str" }
+"type" = { fg = "pal_type" }
+"variable" = { fg = "pal_var" }
+"variable.builtin" = { fg = "pal_var" }
+"variable.parameter" = { fg = "pal_var" }
+"variable.other.member" = { fg = "pal_var" }
+
+# Markup
+"markup.heading" = { fg = "pal_fg1", modifiers = ["bold"] }
+"markup.raw.inline" = { fg = "pal_builtin" }
+"markup.bold" = { fg = "pal_builtin", modifiers = ["bold"] }
+"markup.italic" = { fg = "pal_builtin", modifiers = ["italic"] }
+"markup.strikethrough" = { modifiers = ["crossed_out"] }
+"markup.list" = { fg = "pal_keyword" }
+"markup.quote" = { fg = "pal_type" }
+"markup.link.url" = { fg = "pal_str", modifiers = ["underlined"] }
+"markup.link.text" = { fg = "pal_var" }
+
+# Diff
+"diff.plus" = { bg = "pal_diff_add" }
+"diff.delta" = { bg = "pal_diff_change" }
+"diff.minus" = { bg = "pal_diff_delete" }
+
+# Diagnostics
+"diagnostic.info".underline = { color = "pal_builtin", style = "curl" }
+"diagnostic.hint".underline = { color = "pal_comment", style = "curl" }
+"diagnostic.warning".underline = { color = "pal_warning2", style = "curl" }
+"diagnostic.error".underline = { color = "pal_warning", style = "curl" }
+"diagnostic.unnecessary" = { modifiers = ["dim"] }
+"diagnostic.deprecated" = { modifiers = ["crossed_out"] }
+"info" = { fg = "pal_builtin", modifiers = ["bold"] }
+"hint" = { fg = "pal_comment", modifiers = ["bold"] }
+"warning" = { fg = "pal_warning2", modifiers = ["bold"] }
+"error" = { fg = "pal_warning", modifiers = ["bold"] }
+
+# UI elements
+"ui.background" = { bg = "pal_bg1" }
+"ui.virtual" = { fg = "pal_fg4" }
+"ui.virtual.indent-guide" = { fg = "pal_indent_guide" }
+"ui.virtual.whitespace" = { fg = "pal_fg4" }
+"ui.virtual.ruler" = { bg = "pal_bg3" }
+"ui.virtual.inlay-hint" = { fg = "pal_fg4" }
+"ui.virtual.jump-label" = { fg = "pal_fg4", modifiers = ["bold"] }
+
+"ui.cursor" = { bg = "pal_fg4" }
+"ui.cursor.primary" = { bg = "pal_fg4" }
+"ui.cursor.match" = { fg = "pal_bg1", bg = "pal_str" }
+
+"ui.selection" = { bg = "pal_selection" }
+"ui.selection.primary" = { bg = "pal_selection" }
+"ui.cursorline.primary" = { bg = "pal_bg2" }
+
+"ui.highlight" = { fg = "pal_fg2", bg = "pal_bg3" }
+"ui.highlight.frameline" = { bg = "pal_bg3" }
+
+"ui.linenr" = { fg = "pal_fg4" }
+"ui.linenr.selected" = { fg = "pal_fg6", bg = "pal_bg2", modifiers = ["bold"] }
+
+"ui.statusline" = { fg = "pal_fg4", bg = "pal_bg2", modifiers = ["bold"] }
+"ui.statusline.inactive" = { fg = "pal_var", bg = "pal_bg1" }
+"ui.statusline.normal" = { fg = "pal_bg1", bg = "pal_keyword", modifiers = ["bold"] }
+"ui.statusline.insert" = { fg = "pal_bg1", bg = "pal_str", modifiers = ["bold"] }
+"ui.statusline.select" = { fg = "pal_bg1", bg = "pal_type", modifiers = ["bold"] }
+
+"ui.bufferline" = { fg = "pal_fg2", bg = "pal_bg2" }
+"ui.bufferline.active" = { fg = "pal_bg1", bg = "pal_keyword", underline = { color = "pal_bg1", style = "line" } }
+"ui.bufferline.background" = { bg = "pal_bg2" }
+
+"ui.text" = { fg = "pal_fg1" }
+"ui.text.directory" = { fg = "pal_type" }
+"ui.text.focus" = { fg = "pal_fg1", bg = "pal_bg2", modifiers = ["bold"] }
+
+"ui.help" = { fg = "pal_fg1", bg = "pal_bg2" }
+"ui.popup" = { bg = "pal_bg2" }
+"ui.window" = { fg = "pal_fg3" }
+"ui.menu" = { fg = "pal_fg2", bg = "pal_bg2" }
+"ui.menu.selected" = { fg = "pal_fg3", bg = "pal_bg3" }
+"ui.menu.scroll" = { fg = "pal_fg1", bg = "pal_bg3" }
+
+"ui.debug" = { fg = "pal_warning" }
+
+[palette]
+pal_fg1 = "#b0b0b0"          # Normal foreground
+pal_fg2 = "#a2a2a2"          # Search foreground, Pmenu foreground
+pal_fg3 = "#949494"          # PmenuSel foreground, VertSplit
+pal_fg4 = "#868686"          # StatusLine foreground, LineNr, NonText
+pal_fg6 = "#c3c3c3"          # CursorLineNr foreground
+pal_bg1 = "#000000"          # Normal background
+pal_bg2 = "#271414"          # CursorLine, StatusLine background
+pal_bg3 = "#3a2929"          # PmenuSel, Search background
+pal_bg4 = "#4c3d3d"          # Unused in Neovim, kept for palette
+pal_builtin = "#c97f6f"      # Special
+pal_keyword = "#59c2ff"      # Keyword
+pal_const = "#7ad0c6"        # Constant
+pal_comment = "#44b340"      # Comment
+pal_func = "#c1d1e3"         # Function
+pal_str = "#2ec09c"          # String
+pal_type = "#8cde94"         # Type
+pal_var = "#c1d1e3"          # Identifier (variables)
+pal_selection = "#0000ff"    # Visual selection
+pal_warning = "#ff0000"      # ErrorMsg, IncSearch foreground
+pal_warning2 = "#ff8800"     # WarningMsg
+pal_diff_add = "#004d00"     # DiffAdd background
+pal_diff_delete = "#4d0000"  # DiffDelete background
+pal_diff_change = "#4d4d00"  # DiffChange background
+pal_indent_guide = "#241717" # IblIndent
