@@ -1,0 +1,92 @@
+[language-server.nomic-solidity]
+command = "nomicfoundation-solidity-language-server"
+args = ["--stdio"]
+
+[language-server.deno]
+command = "deno"
+args = ["lsp"]
+
+[language-server.move-analyzer]
+command = "move-analyzer"
+# args = ["--stdio"]
+
+[[language]]
+name = "solidity"
+language-servers = [ "nomic-solidity" ]
+
+[[language]]
+name = "move"
+language-servers = [ "move-analyzer" ]
+
+[[language]]
+name = "rust"
+auto-format = false
+
+[[language]]
+name = "javascript"
+# scope = "source.js"
+injection-regex = "^(js|javascript)$"
+file-types = ["js", "jsx", "mjs"]
+shebangs = ["deno", "node"]
+roots = ["deno.json", "package.json", "tsconfig.json"]
+comment-token = "//"
+# config = { enable = true, lint = true, unstable = true }
+language-servers = ["deno"]
+indent = { tab-width = 2, unit = "  " }
+
+[[language]]
+name = "jsx"
+# scope = "source.jsx"
+injection-regex = "jsx"
+file-types = ["jsx"]
+shebangs = ["deno", "node"]
+roots = ["deno.json", "package.json", "tsconfig.json"]
+comment-token = "//"
+# config = { enable = true, lint = true, unstable = true }
+# language-servers = { command = "deno", args = ["lsp"], language-id = "javascriptreact" }
+language-servers = ["deno"]
+indent = { tab-width = 2, unit = "  " }
+grammar = "javascript"
+
+[[language]]
+name = "typescript"
+# scope = "source.ts"
+injection-regex = "^(ts|typescript)$"
+file-types = ["ts"]
+shebangs = ["deno", "node"]
+roots = ["deno.json", "package.json", "tsconfig.json"]
+# config = { enable = true, lint = true, unstable = true }
+# language-servers = { command = "deno", args = ["lsp"], language-id = "typescript" }
+language-servers = ["deno"]
+indent = { tab-width = 2, unit = "  " }
+
+[[language]]
+name = "tsx"
+# scope = "source.tsx"
+injection-regex = "^(tsx)$" # |typescript
+file-types = ["tsx"]
+shebangs = ["deno", "node"]
+roots = ["deno.json", "package.json", "tsconfig.json"]
+# config = { enable = true, lint = true, unstable = true }
+# language-servers = { command = "deno", args = ["lsp"], language-id = "typescriptreact" }
+language-servers = ["deno"]
+indent = { tab-width = 2, unit = "  " }
+
+[[grammar]]
+name = "c3"
+source = { git = "https://github.com/c3lang/tree-sitter-c3" , rev = "c6b1bae4d575f91e5c6c3c4af93bbec4e543ac5e" }
+
+[[language]]
+name = "c3"
+scope = "source.c3"
+file-types = [ "c3", "c3i" ]
+roots = [ "project.json" ]
+comment-token = "//"
+block-comment-tokens = { start = "/*", end = "*/" }
+indent = { tab-width = 4, unit="    "}
+#language-servers = [ "c3-lsp" ]
+
+# [language-server.clangd.config]
+# fallbackFlags = ["-std=c++23"]
+# args = []
+

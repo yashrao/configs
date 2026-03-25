@@ -1,12 +1,14 @@
 theme = "redsayer"
-
+# theme = "gruber-darker"
+# theme = "modus_operandi_tinted"
+# theme = "modus_vivendi_tritanopia"
 
 [editor]
 line-number = "relative"
+true-color = true
 
 [editor.cursor-shape]
 insert = "bar"
 normal = "block"
 select = "underline"
-
 
