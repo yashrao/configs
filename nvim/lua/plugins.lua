@@ -109,6 +109,7 @@ vim.g.compile_mode = {
       java = "javac % && java %:r",
       go = "go run %",
       rust = "cargo run",
+      zig = "zig build run"
     },
     -- A function which returns the default command string is also supported:
     -- default_command = function()
