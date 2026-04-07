@@ -1,9 +1,9 @@
 
-vim.cmd('colorscheme redsayer')
--- vim.cmd('colorscheme koehler')
-
 require("lspconfig")
 require("plugins")
+
+vim.opt.termguicolors = true
+vim.cmd('colorscheme minicyan')
 
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -11,6 +11,8 @@ vim.opt.relativenumber = true
 vim.opt.expandtab = true
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
+
+vim.g.nowrap = true
 
 vim.opt.updatetime = 300 -- doesn't seem to do anything
 vim.keymap.set("n", "gl", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })

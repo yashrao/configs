@@ -8,6 +8,10 @@
       "rev": "ce34ad9e69cb6a2d9f71017f4cb090195fb9fc09",
       "src": "https://github.com/ej-shafran/compile-mode.nvim"
     },
+    "gitsigns.nvim": {
+      "rev": "0d797daee85366bc242580e352a4f62d67557b84",
+      "src": "https://github.com/lewis6991/gitsigns.nvim"
+    },
     "hover.nvim": {
       "rev": "e73c00da3a9c87a21d2a8ddf7ab4a39824bd5d56",
       "src": "https://github.com/lewis6991/hover.nvim"

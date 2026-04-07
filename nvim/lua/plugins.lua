@@ -12,7 +12,8 @@ vim.pack.add {
     'https://github.com/rebelot/kanagawa.nvim.git',
     'https://github.com/rose-pine/neovim',
     'https://github.com/luiscassih/AniMotion.nvim',
-    'https://github.com/jake-stewart/multicursor.nvim'
+    'https://github.com/jake-stewart/multicursor.nvim',
+    'https://github.com/lewis6991/gitsigns.nvim'
 }
 
 require('oil').setup(oilconfig)
@@ -62,6 +63,7 @@ require('mini.trailspace')
 require('mini.pairs').setup()
 require('mini.completion').setup(mini_completion_config)
 require('mini.icons').setup()
+require('mini.base16')
 
 local wk = require('which-key')
 
@@ -255,3 +257,53 @@ hl(0, "MultiCursorDisabledCursor", { reverse = true })
 hl(0, "MultiCursorDisabledVisual", { link = "Visual" })
 hl(0, "MultiCursorDisabledSign", { link = "SignColumn"})
 
+require("gitsigns").setup {
+  signs = {
+    add          = { text = '┃' },
+    change       = { text = '┃' },
+    delete       = { text = '_' },
+    topdelete    = { text = '‾' },
+    changedelete = { text = '~' },
+    untracked    = { text = '┆' },
+  },
+  signs_staged = {
+    add          = { text = '┃' },
+    change       = { text = '┃' },
+    delete       = { text = '_' },
+    topdelete    = { text = '‾' },
+    changedelete = { text = '~' },
+    untracked    = { text = '┆' },
+  },
+  signs_staged_enable = true,
+  signcolumn = true,  -- Toggle with `:Gitsigns toggle_signs`
+  numhl      = false, -- Toggle with `:Gitsigns toggle_numhl`
+  linehl     = false, -- Toggle with `:Gitsigns toggle_linehl`
+  word_diff  = false, -- Toggle with `:Gitsigns toggle_word_diff`
+  watch_gitdir = {
+    follow_files = true
+  },
+  auto_attach = true,
+  attach_to_untracked = false,
+  current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
+  current_line_blame_opts = {
+    virt_text = true,
+    virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
+    delay = 1000,
+    ignore_whitespace = false,
+    virt_text_priority = 100,
+    use_focus = true,
+  },
+  current_line_blame_formatter = '<author>, <author_time:%R> - <summary>',
+  blame_formatter = nil, -- Use default
+  sign_priority = 6,
+  update_debounce = 100,
+  status_formatter = nil, -- Use default
+  max_file_length = 40000, -- Disable if file is longer than this (in lines)
+  preview_config = {
+    -- Options passed to nvim_open_win
+    style = 'minimal',
+    relative = 'cursor',
+    row = 0,
+    col = 1
+  },
+}
