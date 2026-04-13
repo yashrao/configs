@@ -3,23 +3,35 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, ... }:
-
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      <home-manager/nixos>
-    ];
 
-  virtualisation.virtualbox.host.enable = true;
-  users.extraGroups.vboxusers.members = [ "yash" ];
-  virtualisation.virtualbox.host.enableExtensionPack = true;
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.systemd-boot.enable = true;  
+  #boot.loader.grub.enable = true;
+  boot.loader.grub.device = "nodev";
+  #boot.loader.grub.version = 2;
+  #boot.loader.grub.efiSupport = true;
+  #boot.loader.grub.useOSProber = true;
+  #boot.loader.efi.canTouchEfiVariables = true;
+  #boot.loader.efi.efiSysMountPoint = "/boot";
+  networking.nameservers = [ "8.8.8.8" ];
 
-  networking.hostName = "nixos"; # Define your hostname.
+  # Enable general man page support and cache generation
+  documentation.man.enable = true;
+  documentation.man.generateCaches = true; # Required for `apropos` and `man -k` to work
+
+  # Enable documentation for development packages (C library functions, etc.)
+  documentation.dev.enable = true;
+
+  services.blueman.enable = true;
+  hardware.bluetooth.enable = true;
+
+  # Use latest kernel.
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  networking.hostName = "based-department"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -29,6 +41,12 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  # enabling docker service
+  virtualisation.docker.enable = true;
+
+  virtualisation.libvirtd.enable = true;
+  programs.virt-manager.enable = true;
+
   # Set your time zone.
   time.timeZone = "Asia/Hong_Kong";
 
@@ -36,24 +54,25 @@
   i18n.defaultLocale = "en_HK.UTF-8";
 
   # Enable the X11 windowing system.
+  # You can disable this if you're only using the Wayland session.
   services.xserver.enable = true;
 
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  # Enable the KDE Plasma Desktop Environment.
+  services.displayManager.sddm.enable = true;
+  services.desktopManager.plasma6.enable = true;
+  programs.niri.enable = true;
 
   # Configure keymap in X11
-  services.xserver = {
+  services.xserver.xkb = {
     layout = "us";
-    xkbVariant = "";
+    variant = "";
   };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  sound.enable = true;
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -71,85 +90,30 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.yash = {
     isNormalUser = true;
     description = "Yash Rao";
-    extraGroups = [ "networkmanager" "wheel" ];
-  };
-  home-manager.users.yash = { pkgs, ... }: {
-    nixpkgs.config.allowUnfree = true;
-    home.packages = with pkgs; [ 
-      firefox
-      kitty
-      tinycc
-      pkgs.gnome3.gnome-tweaks
-      neovim
-      pavucontrol
-      spotify
-      vlc
-      zig
-      remmina
-      clang_17
-      clang-tools # for clangd (emacs)
-      steam
-      flameshot
-      gimp
-      tmux
-      discord
-      nerdfonts
-      brave
-      rofi
-      neofetch
-      htop
-      telegram-desktop
-      tradingview
-      godot_4
-      python311Packages.pip
-      python311Packages.pyls-flake8
-      python311Packages.python-lsp-ruff
-      obsidian
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
+    packages = with pkgs; [
+      kdePackages.kate
+    #  thunderbird
     ];
-
-    # for obsidian
-    nixpkgs.config.permittedInsecurePackages = [
-      "electron-25.9.0"
-    ];
-
-    programs.emacs = {
-      enable = true;
-      package = pkgs.emacs;  # replace with pkgs.emacs-gtk, or a version provided by the community overlay if desired.
-    };
-
-    programs.git = {
-      enable = true;
-      userName = "Yash Rao";
-      userEmail = "12raoy1@gmail.com";
-    };
-
-    programs.vscode = {
-      enable = true;
-      extensions = with pkgs.vscode-extensions; [
-        vscodevim.vim
-        yzhang.markdown-all-in-one
-      ];
-    };
-    programs.bash.enable = true;
-
-    # The state version is required and should stay at the version you
-    # originally installed.
-    home.stateVersion = "23.11";
   };
+
+  # Install firefox.
+  programs.firefox.enable = true;
+
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+  
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    wget
-    python3
+   vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+   wget
+   git
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -163,7 +127,15 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh.enable = true;
+
+  services.flatpak.enable = true;
+
+  # for Devenv
+  nix.extraOptions = ''
+    extra-substituters = https://devenv.cachix.org
+    extra-trusted-public-keys = devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=
+  '';
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -177,6 +149,5 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.11"; # Did you read the comment?
-
+  system.stateVersion = "25.11"; # Did you read the comment?
 }

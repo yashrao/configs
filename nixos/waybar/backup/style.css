@@ -1,0 +1,47 @@
+@define-color foreground #eeeeee;
+@define-color foreground-inactive #aaaaaa;
+@define-color background #000000;
+
+* {
+    font-family: "FiraCode Nerd Font";
+    font-size: 12px;
+    padding: 0;
+    margin: 0;
+}
+
+#waybar {
+    color: @foreground;
+    background-color: @background;
+}
+
+#workspaces button {
+    color: @foreground;
+    padding-left: 0.7em;
+}
+
+#workspaces button.empty {
+    color: @foreground-inactive;
+}
+
+#memory,
+#temperature {
+    padding-left: 1em
+}
+
+#wireplumber,
+#battery,
+#backlight,
+#language,
+#network,
+#bluetooth,
+#tray {
+    padding-right: 1em 
+}
+#custom-icon {
+    background-image: url("/home/yash/.config/waybar/icon.png");
+    background-size: 12px 12px;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding-left: 10px;
+    margin-left: 10px;
+}
