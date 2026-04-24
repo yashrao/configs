@@ -3,7 +3,12 @@ require("lspconfig")
 require("plugins")
 
 vim.opt.termguicolors = true
-vim.cmd('colorscheme minicyan')
+-- vim.cmd('colorscheme minicyan')
+-- vim.cmd('colorscheme lunaperche')
+-- vim.cmd('colorscheme modus')
+vim.cmd('colorscheme melange')
+
+vim.cmd('set nowrap')
 
 vim.opt.number = true
 vim.opt.relativenumber = true

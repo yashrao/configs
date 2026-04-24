@@ -13,7 +13,9 @@ vim.pack.add {
     'https://github.com/rose-pine/neovim',
     'https://github.com/luiscassih/AniMotion.nvim',
     'https://github.com/jake-stewart/multicursor.nvim',
-    'https://github.com/lewis6991/gitsigns.nvim'
+    'https://github.com/lewis6991/gitsigns.nvim',
+    'https://github.com/miikanissi/modus-themes.nvim',
+    'https://github.com/savq/melange-nvim'
 }
 
 require('oil').setup(oilconfig)
